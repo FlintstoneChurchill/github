@@ -1,34 +1,55 @@
-import axios from "axios";
 import React, {Component} from "react";
+import withLoader from "../../HOC/withLoader";
+import {connect} from "react-redux";
+import withNetworkError from "../../HOC/withNetworkError";
+import {getUser} from "../../store/actions/usersActions";
+import UserInfo from "../../components/User/UserInfo";
 
 class Main extends Component {
+  state = {
+    copied: false
+  };
+
   componentDidMount() {
-    const params = new URLSearchParams(this.props.location.search);
-    const code = params.getAll("code")[0];
-    console.log(code);
-    if (code) {
-      axios.post(
-        "http://localhost:8000/auth/" + code,
-        null,
-        {
-          headers: {
-            Access: "application/json"
-          }
-        }).then(response => {
-        console.log(response.data);
-      });
-    }
+    this.props.getUser("octocat");
   }
 
+  copyLinkToClipboard = e => {
+    e.preventDefault();
+    navigator.clipboard.writeText(e.target.innerText);
+    this.setState({copied: true});
+    setTimeout(() => {
+      this.setState({copied: false});
+    }, 500);
+  };
+
   render() {
+    const {user} = this.props;
+    if (!user) {
+      return null;
+    }
+
+    console.log(user)
     return (
       <>
-        <h1>Main page</h1>
-        <a
-          href="https://github.com/login/oauth/authorize?client_id=e70a76fe9747a74b5998&redirect_url=http://localhost:3000&scope=user">Login</a>
+        <UserInfo
+          user={user}
+          copyLink={this.copyLinkToClipboard}
+        />
       </>
     );
   }
 }
 
-export default Main;
+const mapStateToProps = state => {
+  return {
+    user: state.users.user
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: username => dispatch(getUser(username))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withLoader(withNetworkError(Main)));

@@ -1,18 +1,28 @@
 import React, {Component} from "react";
+import axios from "../axios-config";
 import {Alert} from "reactstrap";
 
-const withErrorHandler = (WrappedComponent, axios) => {
+const withNetworkError = (WrappedComponent) => {
   return class extends Component {
-    componentDidMount() {
-      this.interceptorId = axios.interceptors.response.use(res => {
-        return res;
-      }, error => {
+    state = {
+      error: null
+    };
+
+    interceptorId = axios.interceptors.response.use(res => {
+      return res;
+    }, error => {
+      if (this.mounted) {
         this.setState({error});
-        return Promise.reject(error);
-      });
+      }
+      return Promise.reject(error);
+    });
+
+    componentDidMount() {
+      this.mounted = true;
     }
 
     componentWillUnmount() {
+      this.mounted = false;
       axios.interceptors.response.eject(this.interceptorId);
     }
 
@@ -33,4 +43,4 @@ const withErrorHandler = (WrappedComponent, axios) => {
   }
 };
 
-export default withErrorHandler;
+export default withNetworkError;

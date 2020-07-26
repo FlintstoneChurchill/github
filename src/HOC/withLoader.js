@@ -1,29 +1,33 @@
 import React, {Component} from "react";
-import Loader from "../../components/UI/Loader/Loader";
+import axios from "../axios-config";
+import Loader from "../components/UI/Loader/Loader";
 
-const withLoader = (WrappedComponent, axios) => {
+const withLoader = (WrappedComponent) => {
   return class extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        loading: false
-      };
-
-      this.interceptorRequestId = axios.interceptors.request.use(req =>{
+    state = {
+      loading: false
+    };
+    interceptorRequestId = axios.interceptors.request.use(req => {
+      if(this.mounted) {
         this.setState({loading: true});
-        return req;
-      });
+      }
+      return req;
+    });
+    interceptorResponseId = axios.interceptors.response.use(res => {
+      if(this.mounted) {
+        this.setState({loading: false});
+      }
+      return res;
+    }, err => {
+      this.setState({loading: false});
+      return Promise.reject(err);
+    });
 
-      this.interceptorResponseId = axios.interceptors.response.use(res => {
-        this.setState({loading: false});
-        return res;
-      }, err => {
-        this.setState({loading: false});
-        return Promise.reject(err);
-      });
+    componentDidMount() {
+      this.mounted = true;
     }
-
     componentWillUnmount() {
+      this.mounted = false;
       axios.interceptors.response.eject(this.interceptorRequestId);
       axios.interceptors.response.eject(this.interceptorResponseId);
     }

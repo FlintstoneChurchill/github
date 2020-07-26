@@ -11,7 +11,7 @@ import {NavLink as RouterNavLink} from "react-router-dom";
 
 const Header = () => {
   return (
-    <Navbar color="dark" dark>
+    <Navbar color="dark" dark className="mb-3">
       <Container>
         <NavbarBrand href="/">Github</NavbarBrand>
         <Nav className="ml-auto" navbar>
