@@ -1,13 +1,13 @@
-import {GET_USER_SUCCESS} from "../actionTypes";
+import {GET_REPOSITORIES_SUCCESS} from "../actionTypes";
 
 const initialState = {
-  user: null
+  allRepos: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER_SUCCESS:
-      return {...state, user: action.user};
+    case GET_REPOSITORIES_SUCCESS:
+      return {...state, allRepos: action.repos};
     default:
       return state;
   }

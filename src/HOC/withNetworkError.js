@@ -31,10 +31,11 @@ const withNetworkError = (WrappedComponent) => {
     };
 
     render() {
+      const {error} = this.state;
       return (
         <>
-          <Alert color="danger" isOpen={this.state.error} toggle={this.errorDismissedHandler}>
-            Error message
+          <Alert color="danger" isOpen={error} toggle={this.errorDismissedHandler}>
+            {error && error.message}
           </Alert>
           <WrappedComponent {...this.props} />
         </>

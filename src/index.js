@@ -12,12 +12,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import './index.css';
 import App from './App';
 import usersReducer from "./store/reducers/usersReducer";
+import reposReducer from "./store/reducers/reposReducer";
 import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  users: usersReducer
+  users: usersReducer,
+  repos: reposReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const CompanyAndLocation = ({user}) => {
   let companyAndLocation = null;
@@ -9,6 +10,10 @@ const CompanyAndLocation = ({user}) => {
     </p>
   }
   return companyAndLocation;
+};
+
+CompanyAndLocation.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default CompanyAndLocation;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Email = ({user}) => {
   return (
@@ -11,6 +12,10 @@ const Email = ({user}) => {
       </a> : null}
     </>
   );
+};
+
+Email.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default Email;

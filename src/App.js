@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch} from "react-router";
 import Main from "./containers/Main/Main";
 import Layout from "./components/Layout/Layout";
+import Repositories from "./containers/Repositories/Repositories";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Layout>
         <Switch>
           <Route path="/" component={Main} exact/>
+          <Route path="/:user/repos" component={Repositories} exact/>
         </Switch>
       </Layout>
     </div>
