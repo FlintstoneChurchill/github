@@ -12,13 +12,13 @@ const RepositoriesList = ({repos}) => {
             const {owner} = repo;
             return (
               <RepositoryItem
+                key={repo.id}
                 repo={repo}
                 owner={owner}
               />
             );
           })
         }
-
       </CardColumns>
     </div>
   );

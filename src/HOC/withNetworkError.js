@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from "../axios-config";
-import {Alert} from "reactstrap";
+import Modal from "../components/UI/Modal/Modal";
 
 const withNetworkError = (WrappedComponent) => {
   return class extends Component {
@@ -34,9 +34,9 @@ const withNetworkError = (WrappedComponent) => {
       const {error} = this.state;
       return (
         <>
-          <Alert color="danger" isOpen={error} toggle={this.errorDismissedHandler}>
+          <Modal show={error} closed={this.errorDismissedHandler}>
             {error && error.message}
-          </Alert>
+          </Modal>
           <WrappedComponent {...this.props} />
         </>
       );

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import withLoader from "../../HOC/withLoader";
 import {connect} from "react-redux";
+import withLoader from "../../HOC/withLoader";
 import withNetworkError from "../../HOC/withNetworkError";
 import {getUser} from "../../store/actions/usersActions";
-import UserInfo from "../../components/User/UserInfo";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 class Main extends Component {
   state = {
@@ -11,7 +11,7 @@ class Main extends Component {
   };
 
   componentDidMount() {
-    this.props.getUser("octocat");
+    this.props.getUser("flintstoneChurchill");
   }
 
   copyLinkToClipboard = e => {

@@ -11,7 +11,7 @@ import {NavLink as RouterNavLink} from "react-router-dom";
 
 const Header = () => {
   return (
-    <Navbar color="dark" dark className="mb-3">
+    <Navbar color="dark" dark className="mb-3" expand="xs">
       <Container>
         <NavbarBrand href="/">Github</NavbarBrand>
         <Nav className="ml-auto" navbar>
@@ -22,6 +22,15 @@ const Header = () => {
               exact
             >
               Main
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              tag={RouterNavLink}
+              to="/users"
+              exact
+            >
+              Users
             </NavLink>
           </NavItem>
         </Nav>
