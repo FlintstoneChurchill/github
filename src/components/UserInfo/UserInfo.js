@@ -19,8 +19,9 @@ const UserInfo = ({user, copyLink}) => {
           <Email user={user}/>
           <a
             href="/"
-            className="d-block"
+            className="d-block position-relative"
             onClick={copyLink}
+            id="link"
           >
             {user.html_url}
           </a>
@@ -37,7 +38,8 @@ const UserInfo = ({user, copyLink}) => {
 
 UserInfo.propTypes = {
   user: PropTypes.object.isRequired,
-  copyLink: PropTypes.func.isRequired
+  copyLink: PropTypes.func.isRequired,
+  copied: PropTypes.bool
 };
 
 export default UserInfo;

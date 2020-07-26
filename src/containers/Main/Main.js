@@ -28,8 +28,6 @@ class Main extends Component {
     if (!user) {
       return null;
     }
-
-    console.log(user)
     return (
       <>
         <UserInfo
