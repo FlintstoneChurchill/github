@@ -17,7 +17,7 @@ const UsersList = ({users}) => {
   );
 };
 
-UserItem.propTypes = {
+UsersList.propTypes = {
   users: PropTypes.array.isRequired
 };
 

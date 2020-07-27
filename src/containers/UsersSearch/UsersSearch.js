@@ -17,7 +17,7 @@ class UsersSearch extends Component {
     return (
       <>
         <h1>Users</h1>
-        <Form className="mb-5">
+        <Form className="mb-5" onSubmit={e => e.preventDefault()}>
           <FormGroup>
             <Input
               type="text"
