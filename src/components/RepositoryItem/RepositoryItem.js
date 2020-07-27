@@ -7,12 +7,12 @@ const RepositoryItem = ({repo, owner}) => {
     <Card>
       <CardBody>
         <CardTitle>
-          <a href={repo.html_url} target="_blank">
+          <a href={repo.html_url} rel="noopener noreferrer" target="_blank">
             {repo.name}
           </a>
         </CardTitle>
         <CardSubtitle>
-          Owner: <a href={owner.html_url} target="_blank">
+          Owner: <a href={owner.html_url} rel="noopener noreferrer" target="_blank">
           {owner.login}
         </a>
         </CardSubtitle>
