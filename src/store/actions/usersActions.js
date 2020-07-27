@@ -23,7 +23,7 @@ const findUsersSuccess = (users) => {
 export const findUsers = query => {
   return dispatch => {
     if (query.length) {
-      axios.get(`search/users?q=${query}`).then(response => {
+      axios.get(`/search/users?q=${query}`).then(response => {
         dispatch(findUsersSuccess(response.data));
       });
     }

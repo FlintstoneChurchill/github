@@ -13,7 +13,9 @@ const Header = () => {
   return (
     <Navbar color="dark" dark className="mb-3" expand="xs">
       <Container>
-        <NavbarBrand href="/">Github</NavbarBrand>
+        <NavbarBrand tag={RouterNavLink} to="/">
+          Github
+        </NavbarBrand>
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink

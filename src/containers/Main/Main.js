@@ -6,10 +6,6 @@ import {getUser} from "../../store/actions/usersActions";
 import UserInfo from "../../components/UserInfo/UserInfo";
 
 class Main extends Component {
-  state = {
-    copied: false
-  };
-
   componentDidMount() {
     this.props.getUser("flintstoneChurchill");
   }
@@ -17,10 +13,6 @@ class Main extends Component {
   copyLinkToClipboard = e => {
     e.preventDefault();
     navigator.clipboard.writeText(e.target.innerText);
-    this.setState({copied: true});
-    setTimeout(() => {
-      this.setState({copied: false});
-    }, 500);
   };
 
   render() {

@@ -19,11 +19,12 @@ const UserInfo = ({user, copyLink}) => {
           <Email user={user}/>
           <a
             href="/"
-            className="d-block position-relative"
+            className="d-block"
             onClick={copyLink}
             id="link"
+            title="Copy to clipboard"
           >
-            {user.html_url}
+            {user.html_url} ⎘
           </a>
           <Link to={`/${user.login}/repos`}>Repositories</Link>
         </Col>
